@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.EmployeeDao">
+
+    <!--  获取用户列表   -->
+    <select id="getEmployees" parameterType="com.zy.vo.request.PaginationRequest" resultType="com.zy.entity.Employee">
+        SELECT * FROM employee
+        <where>
+            <if test="query!=null">
+                and chineseName like concat('%',#{query},'%')
+            </if>
+            <!--<if test="gender!=null">
+                and gender like concat('%',#{query},'%')
+            </if>
+            <if test="grade!=null">
+                and grade like concat('%',#{query},'%')
+            </if>
+            <if test="department!=null">
+                and department like concat('%',#{query},'%')
+            </if>
+            <if test="workingLocation!=null">
+                and workingLocation like concat('%',#{query},'%')
+            </if>
+            <if test="phone!=null">
+                and phone like concat('%',#{query},'%')
+            </if>
+            <if test="address!=null">
+                and address like concat('%',#{query},'%')
+            </if>
+            <if test="email!=null">
+                and email like concat('%',#{query},'%')
+            </if>
+            <if test="school!=null">
+                and school like concat('%',#{query},'%')
+            </if>
+            <if test="marjor!=null">
+                and marjor like concat('%',#{query},'%')
+            </if>
+            <if test="degree!=null">
+                and degree like concat('%',#{query},'%')
+            </if>
+            <if test="terminationReason!=null">
+                and terminationReason like concat('%',#{query},'%')
+            </if>-->
+        </where>
+        order by isDeleted desc
+        limit #{pagenum},#{pagesize}
+    </select>
+
+    <!--    计算总条数    -->
+    <select id="totalEmployee" resultType="int" parameterType="String">
+        select COUNT(*) from employee
+        <where>
+            <if test="query!=null">
+                and chineseName like concat('%',#{query},'%')
+            </if>
+        </where>
+    </select>
+
+    <update id="deleteEmployee">
+        update employee set isDeleted=0,updateUser=#{updateUser},updateTime=#{updateTime} where empId=#{empId}
+    </update>
+
+    <select id="getEmployeeByEmpId" parameterType="long" resultType="com.zy.entity.Employee">
+        select * from employee where empId=#{empId} and isDeleted=1
+    </select>
+
+    <update id="updateEmployeeNotDelete" parameterType="com.zy.entity.Employee">
+        update employee set chineseName=#{chineseName},gender=#{gender},grade=#{grade},hireDate=#{hireDate},department=#{department},workingLocation=#{workingLocation},
+        phone=#{phone},address=#{address},email=#{email},school=#{school},marjor=#{marjor},degree=#{degree},graduationTime=#{graduationTime},birthday=#{birthday},updateUser=#{updateUser},updateTime=#{updateTime}
+        where empId=#{empId}
+    </update>
+
+    <update id="updateEmployeeAndDelete" parameterType="com.zy.entity.Employee">
+        update employee set chineseName=#{chineseName},gender=#{gender},grade=#{grade},hireDate=#{hireDate},department=#{department},workingLocation=#{workingLocation},
+        phone=#{phone},address=#{address},email=#{email},school=#{school},marjor=#{marjor},degree=#{degree},graduationTime=#{graduationTime},birthday=#{birthday},leaveDate=#{leaveDate},terminationReason=#{terminationReason},updateUser=#{updateUser},updateTime=#{updateTime},isDeleted=0
+        where empId=#{empId}
+    </update>
+
+    <insert id="addEmployee" parameterType="com.zy.vo.request.AddEmployeerequest">
+        insert into employee(empId,chineseName,gender,grade,hireDate,department,workingLocation,phone,address,email,school,marjor,degree,graduationTime,birthday,createUser,createTime)
+         values(#{empId},#{chineseName},#{gender},#{grade},#{hireDate},#{department},#{workingLocation},#{phone},#{address},#{email},#{school},#{marjor},#{degree},#{graduationTime},#{birthday},#{createUser},#{createTime})
+    </insert>
+
+    <select id="selectEmpId" resultType="long">
+        select MAX(empId) from employee
+    </select>
+
+</mapper>
