@@ -60,11 +60,11 @@
     </select>
 
     <update id="deleteEmployee">
-        update employee set isDeleted=0,updateUser=#{updateUser},updateTime=#{updateTime} where empId=#{empId}
+        update employee set isDeleted=0,leaveDate=#{leaveDate},terminationReason=#{terminationReason},updateUser=#{updateUser},updateTime=#{updateTime} where empId=#{empId}
     </update>
 
     <select id="getEmployeeByEmpId" parameterType="long" resultType="com.zy.entity.Employee">
-        select * from employee where empId=#{empId} and isDeleted=1
+        select * from employee where empId=#{empId}
     </select>
 
     <update id="updateEmployeeNotDelete" parameterType="com.zy.entity.Employee">

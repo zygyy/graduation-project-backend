@@ -5,6 +5,7 @@ import com.zy.vo.base.RespBean;
 import com.zy.vo.request.AddEmployeerequest;
 import com.zy.vo.request.PaginationRequest;
 
+
 import java.sql.Date;
 
 /**
@@ -23,7 +24,7 @@ public interface EmployeeService {
      */
     public RespBean getEmployees(PaginationRequest paginationRequest);
 
-    public int deleteEmployee(long empId, String updateUser, Date updateTime);
+    public int deleteEmployee(long empId, Date leaveDate, String terminationReason, String updateUser, Date updateTime);
 
     public Employee getEmployeeByEmpId(long empId);
 

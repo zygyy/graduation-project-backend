@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Api("登录")
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/employee")
 public class EmployeeController {
 }

@@ -38,7 +38,7 @@ public interface EmployeeDao {
      * @param empId
      * @return
      */
-    public int deleteEmployee(long empId, String updateUser, Date updateTime);
+    public int deleteEmployee(long empId, Date leaveDate,String terminationReason, String updateUser, Date updateTime);
 
     /**
      * 根据员工号查找员工
