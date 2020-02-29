@@ -69,7 +69,7 @@
 
     <update id="updateEmployeeNotDelete" parameterType="com.zy.entity.Employee">
         update employee set chineseName=#{chineseName},gender=#{gender},grade=#{grade},hireDate=#{hireDate},department=#{department},workingLocation=#{workingLocation},
-        phone=#{phone},address=#{address},email=#{email},school=#{school},marjor=#{marjor},degree=#{degree},graduationTime=#{graduationTime},birthday=#{birthday},updateUser=#{updateUser},updateTime=#{updateTime}
+        phone=#{phone},address=#{address},email=#{email},school=#{school},marjor=#{marjor},degree=#{degree},graduationTime=#{graduationTime},birthday=#{birthday},leaveDate=null,terminationReason=null,updateUser=#{updateUser},updateTime=#{updateTime}
         where empId=#{empId}
     </update>
 
