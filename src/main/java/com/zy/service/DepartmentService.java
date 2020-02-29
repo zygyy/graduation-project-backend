@@ -18,4 +18,8 @@ public interface DepartmentService {
      * @return
      */
     public RespBean getDepartments();
+
+    public RespBean getGrades();
+
+    public  RespBean deleteGrade(int id);
 }

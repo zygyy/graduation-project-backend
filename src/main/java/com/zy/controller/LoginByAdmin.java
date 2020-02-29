@@ -107,6 +107,13 @@ public class LoginByAdmin {
         return departmentService.getDepartments();
     }
 
+    @ApiOperation(value = "获取部门和相应的职位")
+    @GetMapping("/getGrades")
+    public RespBean getGrades() {
+        return departmentService.getGrades();
+    }
+
+
 
     @ApiOperation(value = "修改员工信息或者删除员工")
     @PutMapping("/updateEmployee")

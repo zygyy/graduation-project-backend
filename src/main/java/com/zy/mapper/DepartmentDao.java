@@ -1,6 +1,7 @@
 package com.zy.mapper;
 
 import com.zy.entity.Department;
+import com.zy.entity.Employee;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +22,14 @@ public interface DepartmentDao {
      * @return
      */
     List<Department> getDepartments();
+
+    /**
+     * 根据id删除level为2的职位
+     *
+     * @param id
+     * @return
+     */
+    int deleteGrade(int id);
+
+    Employee getEmployeeByGradeId(int id);
 }

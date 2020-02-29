@@ -10,6 +10,14 @@
          SELECT * FROM department
     </select>
 
+    <delete id="deleteGrade" parameterType="int">
+      delete from department where id=#{id}
+    </delete>
+
+    <select id="getEmployeeByGradeId" parameterType="int" resultType="com.zy.entity.Employee">
+        select * from employee where grade=(select name from department where id=#{id}) and isDeleted=1
+    </select>
+
 
 
 

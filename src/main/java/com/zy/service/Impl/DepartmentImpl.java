@@ -1,6 +1,7 @@
 package com.zy.service.Impl;
 
 import com.zy.entity.Department;
+import com.zy.entity.Employee;
 import com.zy.mapper.DepartmentDao;
 import com.zy.service.DepartmentService;
 import com.zy.vo.base.RespBean;
@@ -22,8 +23,6 @@ public class DepartmentImpl implements DepartmentService {
     @Resource
     DepartmentDao departmentDao;
 
-
-
     @Override
     public RespBean getDepartments() {
         List<Department> departmentList=departmentDao.getDepartments();
@@ -44,5 +43,57 @@ public class DepartmentImpl implements DepartmentService {
         }
         return RespBean.ok("加载完成！",departmentResult);
 
+    }
+
+    @Override
+    public RespBean getGrades(){
+        List<Department> departmentList=departmentDao.getDepartments();
+        List<Department> departmentResult2=new ArrayList<Department>();
+        List<Department> departmentResult1=new ArrayList<Department>();
+        List<Department> departmentResult0=new ArrayList<Department>();
+        for(Department department:departmentList){
+            if(department.getLevel()==2){
+                departmentResult2.add(department);
+            }
+        }
+        for(Department department:departmentList){
+            if(department.getLevel()==1){
+                departmentResult1.add(department);
+            }
+        }
+        for(Department department:departmentList){
+            if(department.getLevel()==0){
+                departmentResult0.add(department);
+            }
+        }
+        for (Department second : departmentResult2) {
+            for (Department one : departmentResult1) {
+                if (second.getPId() == one.getId()) {
+                    second.setDepartment(one);
+                    for(Department zero:departmentResult0){
+                        if(zero.getId()==one.getPId()){
+                            one.setDepartment(zero);
+                        }
+                    }
+                }
+            }
+        }
+        return RespBean.ok("加载完成！",departmentResult2);
+    }
+
+    @Override
+     public RespBean deleteGrade(int id){
+        Employee employee=departmentDao.getEmployeeByGradeId(id);
+        if(employee!=null){
+            return RespBean.error("删除失败！");
+        }else{
+            int result=departmentDao.deleteGrade(id);
+            if(result>0){
+                return RespBean.okMessage("删除成功！");
+            }else{
+                return RespBean.error("删除失败！");
+            }
+
+        }
     }
 }
