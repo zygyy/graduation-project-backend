@@ -34,5 +34,5 @@ public interface EmployeeService {
 
     public int addEmployee(AddEmployeerequest addEmployeerequest);
 
-    public long selectEmpId();
+    public Long selectEmpId();
 }

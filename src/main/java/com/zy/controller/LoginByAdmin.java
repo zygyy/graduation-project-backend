@@ -143,7 +143,12 @@ public class LoginByAdmin {
         Enumeration e = request.getHeaders("authorization");
         while (e.hasMoreElements()) {
             String headValue = (String) e.nextElement();
-            addEmployeerequest.setEmpId(employeeService.selectEmpId()+1);
+            Long maxEmpId=employeeService.selectEmpId();
+            System.out.println("hello"+maxEmpId);
+            if(maxEmpId==null){
+                maxEmpId=new Long(1610701100);
+            }
+            addEmployeerequest.setEmpId(maxEmpId+1);
             addEmployeerequest.setCreateUser(jwtUtils.parseJwtTest(headValue));
             addEmployeerequest.setCreateTime(new Date(System.currentTimeMillis()));
             int result=employeeService.addEmployee(addEmployeerequest);

@@ -61,7 +61,7 @@ public class EmployeeImpl implements EmployeeService {
     }
 
     @Override
-    public long selectEmpId(){
+    public Long selectEmpId(){
         return employeeDao.selectEmpId();
     }
 }

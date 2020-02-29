@@ -77,5 +77,5 @@ public interface EmployeeDao {
      *
      * @return
      */
-    public long selectEmpId();
+    public Long selectEmpId();
 }

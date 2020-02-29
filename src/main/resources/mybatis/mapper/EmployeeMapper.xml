@@ -84,7 +84,7 @@
          values(#{empId},#{chineseName},#{gender},#{grade},#{hireDate},#{department},#{workingLocation},#{phone},#{address},#{email},#{school},#{marjor},#{degree},#{graduationTime},#{birthday},#{createUser},#{createTime})
     </insert>
 
-    <select id="selectEmpId" resultType="long">
+    <select id="selectEmpId" resultType="Long">
         select MAX(empId) from employee
     </select>
 
