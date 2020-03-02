@@ -1,6 +1,7 @@
 package com.zy.service;
 
 import com.zy.vo.base.RespBean;
+import com.zy.vo.request.DeleteDescribeRequest;
 import com.zy.vo.request.LoginRequest;
 
 /**
@@ -22,4 +23,7 @@ public interface DepartmentService {
     public RespBean getGrades();
 
     public  RespBean deleteGrade(int id);
+
+    public int  deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
+
 }

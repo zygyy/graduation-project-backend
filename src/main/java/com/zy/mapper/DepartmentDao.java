@@ -2,6 +2,7 @@ package com.zy.mapper;
 
 import com.zy.entity.Department;
 import com.zy.entity.Employee;
+import com.zy.vo.request.DeleteDescribeRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,4 +33,6 @@ public interface DepartmentDao {
     int deleteGrade(int id);
 
     Employee getEmployeeByGradeId(int id);
+
+    int  deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
 }

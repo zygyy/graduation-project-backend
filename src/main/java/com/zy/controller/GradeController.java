@@ -2,6 +2,7 @@ package com.zy.controller;
 
 import com.zy.service.DepartmentService;
 import com.zy.vo.base.RespBean;
+import com.zy.vo.request.DeleteDescribeRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Delete;
@@ -22,10 +23,25 @@ public class GradeController {
     @Autowired
     DepartmentService departmentService;
 
+
+
+
     @ApiOperation(value = "删除职位")
     @DeleteMapping("/deleteGrade/{id}")
     public RespBean deleteGrade(@PathVariable int id){
         return departmentService.deleteGrade(id);
+    }
+
+    @ApiOperation(value = "删除职位描述")
+    @PutMapping("/deleteDescribe")
+    public RespBean deleteDescribe(@RequestBody DeleteDescribeRequest deleteDescribeRequest){
+        int result=departmentService.deleteGradeDescribe(deleteDescribeRequest);
+        if(result>0){
+            return RespBean.ok("删除成功！",departmentService.getGrades());
+        }else{
+            return RespBean.error("删除失败！");
+        }
+
     }
 
 

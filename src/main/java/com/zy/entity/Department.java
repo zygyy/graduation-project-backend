@@ -17,9 +17,10 @@ public class Department {
     private String name;
     private int pId;//父节点
     private int level;//级别
-    private String describe;//level为2的grade的描述
+    private String describes;//level为2的grade的描述
     private String scale;//职位的级别
     private List<Department> firstChildren;
     private Department department;
+    private String[] describesSplit;
 
 }
