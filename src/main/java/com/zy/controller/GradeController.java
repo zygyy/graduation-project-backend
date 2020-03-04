@@ -74,11 +74,16 @@ public class GradeController {
     @ApiOperation(value = "添加职位")
     @PostMapping("/addGrade/{pId}")
     public RespBean addGrade(@RequestBody AddGraderequest addGraderequest, @PathVariable int pId) {
-        int result = departmentService.addGrade(addGraderequest.getName(), pId,addGraderequest.getDescribes());
-        if (result > 0) {
-            return RespBean.okMessage("新增成功！");
-        } else {
-            return RespBean.error("新增失败!");
+        Department department=departmentService.getDepartmentByNameAndPId(addGraderequest.getName(), pId);
+        if(department==null){
+            int result = departmentService.addGrade(addGraderequest.getName(), pId,addGraderequest.getDescribes(),addGraderequest.getScale());
+            if (result > 0) {
+                return RespBean.okMessage("新增成功！");
+            } else {
+                return RespBean.error("新增失败!");
+            }
+        }else{
+            return RespBean.error("该职位已存在!");
         }
 
     }

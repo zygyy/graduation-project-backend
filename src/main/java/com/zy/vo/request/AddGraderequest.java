@@ -13,4 +13,5 @@ import lombok.Data;
 public class AddGraderequest {
     private String name;
     private String describes;
+    private String scale;
 }

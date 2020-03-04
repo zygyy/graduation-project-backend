@@ -28,9 +28,12 @@
     </update>
 
     <insert id="addGrade">
-       insert into department(name,pId,level,describes) values(#{name},#{pId},2,#{describes})
-
+       insert into department(name,pId,level,describes,scale) values(#{name},#{pId},2,#{describes},#{scale})
     </insert>
+
+    <select id="getDepartmentByNameAndPId" resultType="com.zy.entity.Department">
+        select * from department where name=#{name} and pId=#{pId}
+    </select>
 
 
 </mapper>

@@ -170,7 +170,12 @@ public class DepartmentImpl implements DepartmentService {
     }
 
     @Override
-    public int addGrade(String name, int pId,String describes) {
-        return departmentDao.addGrade(name,pId,describes);
+    public int addGrade(String name, int pId,String describes,String scale) {
+        return departmentDao.addGrade(name,pId,describes,scale);
+    }
+
+    @Override
+    public Department getDepartmentByNameAndPId(String name,int pId){
+        return departmentDao.getDepartmentByNameAndPId(name,pId);
     }
 }

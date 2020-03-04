@@ -38,5 +38,7 @@ public interface DepartmentDao {
 
     int updateGrade(int id,String name);
 
-    int addGrade(String name,int pId,String describes);
+    int addGrade(String name,int pId,String describes,String scale);
+
+    Department getDepartmentByNameAndPId(String name,int pId);
 }

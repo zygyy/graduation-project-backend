@@ -34,7 +34,8 @@ public interface DepartmentService {
 
     public RespBean getDepartmentsNotLevel2();
 
-    public int addGrade(String name,int pId,String describes);
+    public int addGrade(String name,int pId,String describes,String scale);
 
+    Department getDepartmentByNameAndPId(String name,int pId);
 
 }
