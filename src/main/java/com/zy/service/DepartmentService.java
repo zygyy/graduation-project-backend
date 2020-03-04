@@ -1,8 +1,10 @@
 package com.zy.service;
 
+
+import com.zy.entity.Department;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.DeleteDescribeRequest;
-import com.zy.vo.request.LoginRequest;
+
 
 /**
  * @author 执笔画倾颜and陈群
@@ -25,5 +27,14 @@ public interface DepartmentService {
     public  RespBean deleteGrade(int id);
 
     public int  deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
+
+    public  int updateGrade(int id,String name);
+
+    public Department getUpdateDepartment(int id);
+
+    public RespBean getDepartmentsNotLevel2();
+
+    public int addGrade(String name,int pId,String describes);
+
 
 }

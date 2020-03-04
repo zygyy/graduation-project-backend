@@ -35,4 +35,7 @@ public interface EmployeeService {
     public int addEmployee(AddEmployeerequest addEmployeerequest);
 
     public Long selectEmpId();
+
+    public int updateGradeByDepartment(String grade2,String grade1,String department);
+
 }

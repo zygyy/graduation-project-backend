@@ -23,5 +23,14 @@
     </update>
 
 
+    <update id="updateGrade">
+        update department set name=#{name} where id=#{id}
+    </update>
+
+    <insert id="addGrade">
+       insert into department(name,pId,level,describes) values(#{name},#{pId},2,#{describes})
+
+    </insert>
+
 
 </mapper>

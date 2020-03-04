@@ -35,4 +35,8 @@ public interface DepartmentDao {
     Employee getEmployeeByGradeId(int id);
 
     int  deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
+
+    int updateGrade(int id,String name);
+
+    int addGrade(String name,int pId,String describes);
 }

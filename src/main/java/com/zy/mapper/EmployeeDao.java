@@ -78,4 +78,13 @@ public interface EmployeeDao {
      * @return
      */
     public Long selectEmpId();
+
+    /**
+     *
+     * @param grade2 修改之后
+     * @param grade1 修改之前
+     * @param department
+     * @return
+     */
+    public int updateGradeByDepartment(String grade2,String grade1,String department);
 }

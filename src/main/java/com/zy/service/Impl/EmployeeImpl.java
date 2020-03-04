@@ -64,4 +64,9 @@ public class EmployeeImpl implements EmployeeService {
     public Long selectEmpId(){
         return employeeDao.selectEmpId();
     }
+
+    @Override
+    public int updateGradeByDepartment(String grade2,String grade1, String department) {
+        return employeeDao.updateGradeByDepartment(grade2,grade1,department);
+    }
 }

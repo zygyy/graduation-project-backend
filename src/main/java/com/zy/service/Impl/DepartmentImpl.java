@@ -107,4 +107,70 @@ public class DepartmentImpl implements DepartmentService {
     public int deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest) {
         return departmentDao.deleteGradeDescribe(deleteDescribeRequest);
     }
+
+
+    @Override
+    public  int updateGrade(int id,String name){
+        return departmentDao.updateGrade(id,name);
+
+    }
+
+    @Override
+    public Department getUpdateDepartment(int id) {
+        List<Department> departmentList = departmentDao.getDepartments();
+        Department result=new Department();
+        for(Department one:departmentList){
+            if(one.getId()==id){
+                for(Department second:departmentList){
+                    if(one.getPId()==second.getId()){
+                        one.setDepartment(second);
+                        for(Department thrid:departmentList){
+                            if(second.getPId()==thrid.getId()){
+                                second.setDepartment(thrid);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for(Department one:departmentList){
+            if(one.getId()==id){
+                result=one;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public RespBean getDepartmentsNotLevel2() {
+        List<Department> departmentList = departmentDao.getDepartments();
+        List<Department> departments = new ArrayList<Department>();
+        List<Department> departmentResult = new ArrayList<Department>();
+        for (Department department : departmentList) {
+            if(department.getLevel()!=2){
+                departments.add(department);
+            }
+
+        }
+        for (Department department : departments) {
+            //如果父节点为0,则为一级
+            if (department.getPId() == 0) {
+                departmentResult.add(department);
+            }
+            for (Department departmentSecond : departments) {
+                if (departmentSecond.getPId() == department.getId()) {
+                    if (department.getFirstChildren() == null) {
+                        department.setFirstChildren(new ArrayList<Department>());
+                    }
+                    department.getFirstChildren().add(departmentSecond);
+                }
+            }
+        }
+        return RespBean.ok("加载完成！", departmentResult);
+    }
+
+    @Override
+    public int addGrade(String name, int pId,String describes) {
+        return departmentDao.addGrade(name,pId,describes);
+    }
 }

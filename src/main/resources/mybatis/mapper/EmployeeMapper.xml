@@ -88,4 +88,9 @@
         select MAX(empId) from employee
     </select>
 
+    <update id="updateGradeByDepartment">
+update employee set grade=#{grade2} where grade=#{grade1} and department=#{department}
+
+    </update>
+
 </mapper>
