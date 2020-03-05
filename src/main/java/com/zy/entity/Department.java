@@ -23,4 +23,9 @@ public class Department {
     private Department department;
     private String[] describesSplit;
 
+
+    // 用户控制前端的按钮和文本框的切换
+    private boolean inputVisible= false;
+    private String inputValue="";
+
 }
