@@ -41,4 +41,7 @@ public interface DepartmentDao {
     int addGrade(String name,int pId,String describes,String scale);
 
     Department getDepartmentByNameAndPId(String name,int pId);
+
+
+    List<Department> getLevel1(int id);
 }

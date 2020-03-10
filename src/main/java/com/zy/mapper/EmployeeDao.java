@@ -87,4 +87,13 @@ public interface EmployeeDao {
      * @return
      */
     public int updateGradeByDepartment(String grade2,String grade1,String department);
+
+
+    /**
+     * 统计每个部门的人数
+     * @param department
+     * @return
+     */
+    public Integer employeeNumber(String department);
+
 }

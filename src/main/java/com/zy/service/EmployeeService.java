@@ -38,4 +38,6 @@ public interface EmployeeService {
 
     public int updateGradeByDepartment(String grade2,String grade1,String department);
 
+    public Integer employeeNumber(String department);
+
 }

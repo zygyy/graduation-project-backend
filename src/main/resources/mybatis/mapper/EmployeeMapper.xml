@@ -89,8 +89,12 @@
     </select>
 
     <update id="updateGradeByDepartment">
-update employee set grade=#{grade2} where grade=#{grade1} and department=#{department}
-
+        update employee set grade=#{grade2} where grade=#{grade1} and department=#{department}
     </update>
+
+    <select id="employeeNumber" resultType="Integer" parameterType="String">
+        select count(*) from employee where department=#{department} and isDeleted=1
+    </select>
+
 
 </mapper>

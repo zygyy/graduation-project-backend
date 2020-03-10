@@ -110,22 +110,22 @@ public class DepartmentImpl implements DepartmentService {
 
 
     @Override
-    public  int updateGrade(int id,String name){
-        return departmentDao.updateGrade(id,name);
+    public int updateGrade(int id, String name) {
+        return departmentDao.updateGrade(id, name);
 
     }
 
     @Override
     public Department getUpdateDepartment(int id) {
         List<Department> departmentList = departmentDao.getDepartments();
-        Department result=new Department();
-        for(Department one:departmentList){
-            if(one.getId()==id){
-                for(Department second:departmentList){
-                    if(one.getPId()==second.getId()){
+        Department result = new Department();
+        for (Department one : departmentList) {
+            if (one.getId() == id) {
+                for (Department second : departmentList) {
+                    if (one.getPId() == second.getId()) {
                         one.setDepartment(second);
-                        for(Department thrid:departmentList){
-                            if(second.getPId()==thrid.getId()){
+                        for (Department thrid : departmentList) {
+                            if (second.getPId() == thrid.getId()) {
                                 second.setDepartment(thrid);
                             }
                         }
@@ -133,9 +133,9 @@ public class DepartmentImpl implements DepartmentService {
                 }
             }
         }
-        for(Department one:departmentList){
-            if(one.getId()==id){
-                result=one;
+        for (Department one : departmentList) {
+            if (one.getId() == id) {
+                result = one;
             }
         }
         return result;
@@ -147,7 +147,7 @@ public class DepartmentImpl implements DepartmentService {
         List<Department> departments = new ArrayList<Department>();
         List<Department> departmentResult = new ArrayList<Department>();
         for (Department department : departmentList) {
-            if(department.getLevel()!=2){
+            if (department.getLevel() != 2) {
                 departments.add(department);
             }
 
@@ -170,12 +170,37 @@ public class DepartmentImpl implements DepartmentService {
     }
 
     @Override
-    public int addGrade(String name, int pId,String describes,String scale) {
-        return departmentDao.addGrade(name,pId,describes,scale);
+    public int addGrade(String name, int pId, String describes, String scale) {
+        return departmentDao.addGrade(name, pId, describes, scale);
     }
 
     @Override
-    public Department getDepartmentByNameAndPId(String name,int pId){
-        return departmentDao.getDepartmentByNameAndPId(name,pId);
+    public Department getDepartmentByNameAndPId(String name, int pId) {
+        return departmentDao.getDepartmentByNameAndPId(name, pId);
+    }
+
+    @Override
+    public List<Department> departmentAndNumber() {
+        List<Department> departmentList = departmentDao.getDepartments();
+        List<Department> departmentResult1 = new ArrayList<Department>();
+        List<Department> departmentResult0 = new ArrayList<Department>();
+        for (Department department : departmentList) {
+            if (department.getLevel() == 1) {
+                departmentResult1.add(department);
+            }
+        }
+        for (Department department : departmentList) {
+            if (department.getLevel() == 0) {
+                departmentResult0.add(department);
+            }
+        }
+        for (Department one : departmentResult1) {
+            for (Department zero : departmentResult0) {
+                if (zero.getId() == one.getPId()) {
+                    one.setDepartment(zero);
+                }
+            }
+        }
+        return departmentResult1;
     }
 }

@@ -36,4 +36,8 @@
     </select>
 
 
+    <select id="getLevel1" parameterType="int" resultType="com.zy.entity.Department">
+        select name from department where
+    </select>
+
 </mapper>

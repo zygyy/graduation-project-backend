@@ -5,6 +5,8 @@ import com.zy.entity.Department;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.DeleteDescribeRequest;
 
+import java.util.List;
+
 
 /**
  * @author 执笔画倾颜and陈群
@@ -38,4 +40,5 @@ public interface DepartmentService {
 
     Department getDepartmentByNameAndPId(String name,int pId);
 
+    List<Department> departmentAndNumber();
 }
