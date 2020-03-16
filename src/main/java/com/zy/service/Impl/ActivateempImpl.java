@@ -1,6 +1,7 @@
 package com.zy.service.Impl;
 
 import com.zy.entity.Activateemp;
+import com.zy.entity.Department;
 import com.zy.entity.Operation;
 import com.zy.mapper.ActivateempDao;
 import com.zy.service.ActivateempService;
@@ -25,7 +26,7 @@ import java.util.List;
 @Service
 public class ActivateempImpl implements ActivateempService {
     @Resource
-    ActivateempDao ActivateempDao;
+    ActivateempDao activateempDao;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -41,7 +42,7 @@ public class ActivateempImpl implements ActivateempService {
      */
     @Override
     public RespBean login(LoginRequest loginRequest) throws Exception {
-        Activateemp activateemp = ActivateempDao.loadUserByUsername(loginRequest.getUsername());
+        Activateemp activateemp = activateempDao.loadUserByUsername(loginRequest.getUsername());
         if (activateemp == null) {
             return RespBean.error("您并非管理员，请重新登录！");
         } else {
@@ -69,7 +70,7 @@ public class ActivateempImpl implements ActivateempService {
     @Override
     public RespBean getOperations() {
         //查询到的操作集合
-        List<Operation> activateempDaoList=ActivateempDao.getOperationByAdmin();
+        List<Operation> activateempDaoList=activateempDao.getOperationByAdmin();
         //创建一个空的集合,将来把树形结构放进去
         List<Operation> operationResponseList=new ArrayList<Operation>();
         //循环遍历集合
@@ -92,4 +93,18 @@ public class ActivateempImpl implements ActivateempService {
         return RespBean.ok("管理员操作加载完毕！",operationResponseList);
     }
 
+    @Override
+    public Activateemp getInfoByEmpId(long empId){
+        return activateempDao.getInfoByEmpId(empId);
+    }
+
+    @Override
+    public int insertActivatemp(Activateemp activateemp){
+        return activateempDao.insertActivatemp(activateemp);
+    }
+
+    @Override
+    public Activateemp judgeUserName(String username){
+        return activateempDao.loadUserByUsername(username);
+    }
 }

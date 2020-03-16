@@ -23,7 +23,13 @@
          SELECT * FROM operation where apply="admin"
     </select>
 
+    <select id="getInfoByEmpId" resultType="com.zy.entity.Activateemp" parameterType="long">
+        select * from activateemp where empId=#{empId}
+    </select>
 
+    <insert id="insertActivatemp" parameterType="com.zy.entity.Activateemp">
+        insert into activateemp(empId,name,phone,address,username,password,roleId)   values(#{empId},#{name},#{phone},#{address},#{username},#{password},2)
+    </insert>
 
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.zy.service;
 
+import com.zy.entity.Activateemp;
+import com.zy.entity.Department;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.LoginRequest;
 
@@ -24,4 +26,10 @@ public interface ActivateempService {
      * @return
      */
     public RespBean getOperations();
+
+    public Activateemp getInfoByEmpId(long empId);
+
+    public int insertActivatemp(Activateemp activateemp);
+
+    public Activateemp judgeUserName(String username);
 }

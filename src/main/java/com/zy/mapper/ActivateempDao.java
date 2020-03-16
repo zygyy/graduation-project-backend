@@ -1,6 +1,7 @@
 package com.zy.mapper;
 
 import com.zy.entity.Activateemp;
+import com.zy.entity.Department;
 import com.zy.entity.Operation;
 import org.springframework.stereotype.Repository;
 
@@ -30,6 +31,21 @@ public interface ActivateempDao {
      */
     List<Operation> getOperationByAdmin();
 
+    /**
+     * 根据员工号查看注册的信息
+     *
+     * @param empId
+     * @return
+     */
+    public Activateemp getInfoByEmpId(long empId);
+
+    /**
+     * 注册
+     *
+     * @param activateemp
+     * @return
+     */
+    public int insertActivatemp(Activateemp activateemp);
 
 
 }
