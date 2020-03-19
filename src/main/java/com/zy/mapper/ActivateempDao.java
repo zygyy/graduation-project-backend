@@ -66,4 +66,5 @@ public interface ActivateempDao {
      */
     public int passwordUpdate(Long empId,String name,String password);
 
+    public int updatePhoto(long empId,String name,String photoUrl);
 }

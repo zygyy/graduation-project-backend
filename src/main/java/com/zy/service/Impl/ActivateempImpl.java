@@ -118,4 +118,8 @@ public class ActivateempImpl implements ActivateempService {
     public int passwordUpdate(Long empId,String name,String password){
         return activateempDao.passwordUpdate(empId,name,password);
     }
+    @Override
+    public int updatePhoto(long empId,String name,String photoUrl){
+        return activateempDao.updatePhoto(empId,name,photoUrl);
+    }
 }

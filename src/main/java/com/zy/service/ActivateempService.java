@@ -1,7 +1,6 @@
 package com.zy.service;
 
 import com.zy.entity.Activateemp;
-import com.zy.entity.Department;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.LoginRequest;
 import com.zy.vo.request.MyselfUpdateRequest;
@@ -37,5 +36,7 @@ public interface ActivateempService {
     public int myselfUpdate(MyselfUpdateRequest myselfUpdateRequest);
 
     public int passwordUpdate(Long empId,String name,String password);
+
+    public int updatePhoto(long empId,String name,String photoUrl);
 
 }

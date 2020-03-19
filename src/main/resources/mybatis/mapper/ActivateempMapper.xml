@@ -39,4 +39,8 @@
         update activateemp set password=#{password} where empId=#{empId} and name=#{name}
     </update>
 
+    <update id="updatePhoto">
+        update activateemp set photoUrl=#{photoUrl} where empId=#{empId} and name=#{name}
+    </update>
+
 </mapper>
