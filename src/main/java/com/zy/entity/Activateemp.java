@@ -22,7 +22,5 @@ public class Activateemp {
     private String password;
     //角色id
     private int roleId;
-    //头像地址
-    private String photoUrl;
     private String token;
 }

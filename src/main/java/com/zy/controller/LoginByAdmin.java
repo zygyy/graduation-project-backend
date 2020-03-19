@@ -34,7 +34,7 @@ import java.util.Enumeration;
  * @class LoginByAdmin
  * @create 2020-02-15 16:28
  */
-@Api("管理员端登录以及员工信息")
+@Api("管理员端")
 @RestController
 @RequestMapping("/admin")
 public class LoginByAdmin {

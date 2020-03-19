@@ -31,12 +31,5 @@
         insert into activateemp(empId,name,phone,address,username,password,roleId)   values(#{empId},#{name},#{phone},#{address},#{username},#{password},2)
     </insert>
 
-    <update id="myselfUpdate" parameterType="com.zy.vo.request.MyselfUpdateRequest">
-        update activateemp set phone=#{phone},address=#{address},username=#{username} where empId=#{empId} and  name=#{name}
-    </update>
-
-    <update id="passwordUpdate">
-        update activateemp set password=#{password} where empId=#{empId} and name=#{name}
-    </update>
 
 </mapper>

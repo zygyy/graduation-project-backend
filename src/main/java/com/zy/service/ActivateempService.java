@@ -4,7 +4,6 @@ import com.zy.entity.Activateemp;
 import com.zy.entity.Department;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.LoginRequest;
-import com.zy.vo.request.MyselfUpdateRequest;
 
 /**
  * @author 执笔画倾颜and陈群
@@ -33,9 +32,4 @@ public interface ActivateempService {
     public int insertActivatemp(Activateemp activateemp);
 
     public Activateemp judgeUserName(String username);
-
-    public int myselfUpdate(MyselfUpdateRequest myselfUpdateRequest);
-
-    public int passwordUpdate(Long empId,String name,String password);
-
 }
