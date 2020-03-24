@@ -24,6 +24,10 @@ public class DepartmentImpl implements DepartmentService {
     @Resource
     DepartmentDao departmentDao;
 
+    /**
+     * 得到部门的树形图
+     * @return
+     */
     @Override
     public RespBean getDepartments() {
         List<Department> departmentList = departmentDao.getDepartments();
@@ -46,6 +50,10 @@ public class DepartmentImpl implements DepartmentService {
 
     }
 
+    /**
+     * 得到形如：部门-总部门-职位-描述的形式
+     * @return
+     */
     @Override
     public RespBean getGrades() {
         List<Department> departmentList = departmentDao.getDepartments();
@@ -141,6 +149,10 @@ public class DepartmentImpl implements DepartmentService {
         return result;
     }
 
+    /**
+     * 获取总部门以及子部门，形成树结构
+     * @return
+     */
     @Override
     public RespBean getDepartmentsNotLevel2() {
         List<Department> departmentList = departmentDao.getDepartments();
@@ -179,6 +191,10 @@ public class DepartmentImpl implements DepartmentService {
         return departmentDao.getDepartmentByNameAndPId(name, pId);
     }
 
+    /**
+     * 获取总部门以及子部门，形成链结构
+     * @return
+     */
     @Override
     public List<Department> departmentAndNumber() {
         List<Department> departmentList = departmentDao.getDepartments();
@@ -202,5 +218,11 @@ public class DepartmentImpl implements DepartmentService {
             }
         }
         return departmentResult1;
+    }
+
+    @Override
+    public List<String> getGradeTotal(String level1){
+        return departmentDao.getGradeTotal(level1);
+
     }
 }

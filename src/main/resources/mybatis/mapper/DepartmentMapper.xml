@@ -35,9 +35,8 @@
         select * from department where name=#{name} and pId=#{pId}
     </select>
 
-
-    <select id="getLevel1" parameterType="int" resultType="com.zy.entity.Department">
-        select name from department where
+    <select id="getGradeTotal" parameterType="String" resultType="String">
+       select name from department where pId=(select id from department where name=#{name})
     </select>
 
 </mapper>

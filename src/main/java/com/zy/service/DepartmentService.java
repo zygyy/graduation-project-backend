@@ -41,4 +41,11 @@ public interface DepartmentService {
     Department getDepartmentByNameAndPId(String name,int pId);
 
     List<Department> departmentAndNumber();
+
+    /**
+     * 根据level获取对应的职位
+     * @param level1
+     * @return
+     */
+    List<String> getGradeTotal(String level1);
 }

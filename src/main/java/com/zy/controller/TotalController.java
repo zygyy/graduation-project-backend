@@ -4,13 +4,12 @@ import com.zy.entity.Department;
 import com.zy.service.DepartmentService;
 import com.zy.service.EmployeeService;
 import com.zy.vo.base.RespBean;
+import com.zy.vo.request.DepartmentRequest;
 import com.zy.vo.response.TotalResopnse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class TotalController {
     EmployeeService employeeService;
 
 
-
     @ApiOperation(value = "获取各个部门人数")
     @GetMapping("/report")
     public RespBean report() {
@@ -40,7 +38,6 @@ public class TotalController {
         TotalResopnse totalResopnse = new TotalResopnse();
         List<String> temp = new ArrayList();
         List<Integer> number = new ArrayList();
-
         for (Department department : result) {
             temp.add(department.getDepartment().getName() + "/" + department.getName());
         }
@@ -49,11 +46,24 @@ public class TotalController {
             number.add(employeeService.employeeNumber(temp.get(i)));
         }
         totalResopnse.setNumber(number);
-
         totalResopnse.setDepartment(temp);
         return RespBean.ok(totalResopnse);
     }
 
+    @ApiOperation(value = "获取各部门各职位人数")
+    @PostMapping("/departPeopleTotal")
+    public RespBean departPeopleTotal(@RequestBody DepartmentRequest departmentRequest) {
+        String[] result = departmentRequest.getDepartmentName().split("/");
+        List<String> gradelist = departmentService.getGradeTotal(result[1]);
+        TotalResopnse totalResopnse=new TotalResopnse();
+        totalResopnse.setDepartment(gradelist);
+        List<Integer> numberResult = new ArrayList();
+        for (int i = 0; i < gradelist.size(); i++) {
+            numberResult.add(employeeService.employeeGradeNumber(gradelist.get(i), departmentRequest.getDepartmentName()));
+        }
+        totalResopnse.setNumber(numberResult);
+        return RespBean.ok(totalResopnse);
+    }
 
 
 }

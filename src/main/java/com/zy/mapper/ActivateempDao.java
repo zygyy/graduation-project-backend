@@ -66,5 +66,12 @@ public interface ActivateempDao {
      */
     public int passwordUpdate(Long empId,String name,String password);
 
+    /**
+     * 根据empId和姓名更新头像地址
+     * @param empId
+     * @param name
+     * @param photoUrl
+     * @return
+     */
     public int updatePhoto(long empId,String name,String photoUrl);
 }

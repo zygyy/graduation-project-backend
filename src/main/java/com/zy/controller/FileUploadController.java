@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Api("管理员端登录以及员工信息")
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/file")
 public class FileUploadController {
     @Autowired
     FileUploadServiceImpl fileUploadServiceImpl;
@@ -36,7 +36,7 @@ public class FileUploadController {
      * @return FileUploadResult
      * @Param uploadFile
      */
-    @PostMapping("file/upload/{empId}/{name}")
+    @PostMapping("/upload/{empId}/{name}")
     @ResponseBody
     public RespBean upload(@PathVariable long empId, @PathVariable String name, @RequestParam("file") MultipartFile uploadFile)
             throws Exception {
@@ -56,7 +56,7 @@ public class FileUploadController {
      * @author lastwhisper
      * @Param objectName
      */
-    @RequestMapping("file/delete")
+    @RequestMapping("/delete")
     @ResponseBody
     public FileUploadResponse delete(@RequestParam("fileName") String objectName)
             throws Exception {
@@ -70,7 +70,7 @@ public class FileUploadController {
      * @return List<OSSObjectSummary>
      * @Param
      */
-    @RequestMapping("file/list")
+    @RequestMapping("/list")
     @ResponseBody
     public List<OSSObjectSummary> list()
             throws Exception {
@@ -83,7 +83,7 @@ public class FileUploadController {
      * @return
      * @Param objectName
      */
-    @RequestMapping("file/download")
+    @RequestMapping("/download")
     @ResponseBody
     public void download(@RequestParam("fileName") String objectName, HttpServletResponse response) throws IOException {
         //通知浏览器以附件形式下载

@@ -73,4 +73,17 @@ public class EmployeeImpl implements EmployeeService {
     public Integer employeeNumber(String department){
         return employeeDao.employeeNumber(department);
     }
+
+    /**
+     * 获取每个部门下对应职位的人数
+     *
+     * @param grade
+     * @param department
+     * @return
+     */
+    @Override
+    public Integer employeeGradeNumber(String grade,String department){
+        return employeeDao.employeeGradeNumber(grade,department);
+    }
+
 }

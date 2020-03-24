@@ -96,5 +96,8 @@
         select count(*) from employee where department=#{department} and isDeleted=1
     </select>
 
+    <select id="employeeGradeNumber" resultType="Integer">
+         select count(*) from employee where grade=#{grade} and department=#{department} and  isDeleted=1
+    </select>
 
 </mapper>
