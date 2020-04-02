@@ -17,6 +17,7 @@ public interface OperationDao {
 
     /**
      * 获取所有属于员工的权限
+     *
      * @return
      */
     public List<Operation> getUserOperation();

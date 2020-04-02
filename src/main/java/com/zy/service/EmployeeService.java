@@ -24,20 +24,73 @@ public interface EmployeeService {
      */
     public RespBean getEmployees(PaginationRequest paginationRequest);
 
+    /**
+     * 根据empId删除员工（逻辑删除），并添加操作人，原因以及时间等信息
+     *
+     * @param empId
+     * @param leaveDate
+     * @param terminationReason
+     * @param updateUser
+     * @param updateTime
+     * @return
+     */
     public int deleteEmployee(long empId, Date leaveDate, String terminationReason, String updateUser, Date updateTime);
 
+    /**
+     * 根据empId获取员工信息
+     *
+     * @param empId
+     * @return
+     */
     public Employee getEmployeeByEmpId(long empId);
 
+    /**
+     * 更新员工信息（不离职）
+     *
+     * @param employee
+     * @return
+     */
     public int updateEmployeeNotDelete(Employee employee);
 
+    /**
+     * 更新员工信息（离职）
+     *
+     * @param employee
+     * @return
+     */
     public int updateEmployeeAndDelete(Employee employee);
 
+    /**
+     * 录入员工信息
+     *
+     * @param addEmployeerequest
+     * @return
+     */
     public int addEmployee(AddEmployeerequest addEmployeerequest);
 
+    /**
+     * 查询最大的empId，为了录入员工时自动分配empId（最大数+1）
+     *
+     * @return
+     */
     public Long selectEmpId();
 
+    /**
+     * 更新职位名称时，employee表的职位名称也需要修改
+     *
+     * @param grade2
+     * @param grade1
+     * @param department
+     * @return
+     */
     public int updateGradeByDepartment(String grade2,String grade1,String department);
 
+    /**
+     * 查询某个部门下的总人数
+     *
+     * @param department
+     * @return
+     */
     public Integer employeeNumber(String department);
 
     /**

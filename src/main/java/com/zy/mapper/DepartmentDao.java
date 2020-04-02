@@ -35,6 +35,7 @@ public interface DepartmentDao {
 
     /**
      * 根据部门id获取部门名称，再根据名称查找员工表
+     *
      * @param id
      * @return
      */
@@ -43,40 +44,45 @@ public interface DepartmentDao {
 
     /**
      * 删除职位描述
+     *
      * @param deleteDescribeRequest
      * @return
      */
-    int  deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
+    int deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
 
     /**
      * 修改职位名称
+     *
      * @param id
      * @param name
      * @return
      */
-    int updateGrade(int id,String name);
+    int updateGrade(int id, String name);
 
 
     /**
      * 新增部门
+     *
      * @param name
      * @param pId
      * @param describes
      * @param scale
      * @return
      */
-    int addGrade(String name,int pId,String describes,String scale);
+    int addGrade(String name, int pId, String describes, String scale);
 
     /**
      * 根据名称和pId寻找部门信息
+     *
      * @param name
      * @param pId
      * @return
      */
-    Department getDepartmentByNameAndPId(String name,int pId);
+    Department getDepartmentByNameAndPId(String name, int pId);
 
     /**
      * 根据level获取对应的职位
+     *
      * @param level1
      * @return
      */
@@ -94,7 +100,6 @@ public interface DepartmentDao {
     public List<Department> getGradesByPagination(PaginationRequest paginationRequest);
 
     /**
-     *
      * @param query
      * @return
      */

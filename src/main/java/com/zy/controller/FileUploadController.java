@@ -30,21 +30,22 @@ public class FileUploadController {
     FileUploadServiceImpl fileUploadServiceImpl;
     @Autowired
     ActivateempService activateempService;
+
     /**
+     * @return FileUploadResult
      * @author lastwhisper
      * @desc 文件上传到oss
-     * @return FileUploadResult
      * @Param uploadFile
      */
     @PostMapping("/upload/{empId}/{name}")
     @ResponseBody
     public RespBean upload(@PathVariable long empId, @PathVariable String name, @RequestParam("file") MultipartFile uploadFile)
             throws Exception {
-        FileUploadResponse fileUploadResponse= this.fileUploadServiceImpl.upload(uploadFile);
-        int result=activateempService.updatePhoto(empId,name,fileUploadResponse.getName());
-        if(result>0){
-            return RespBean.ok("上传成功！",fileUploadResponse);
-        }else{
+        FileUploadResponse fileUploadResponse = this.fileUploadServiceImpl.upload(uploadFile);
+        int result = activateempService.updatePhoto(empId, name, fileUploadResponse.getName());
+        if (result > 0) {
+            return RespBean.ok("上传成功！", fileUploadResponse);
+        } else {
             return RespBean.error("上传失败！");
         }
     }
@@ -64,10 +65,10 @@ public class FileUploadController {
     }
 
     /**
+     * @return List<OSSObjectSummary>
      * @author lastwhisper
      * @desc 查询oss上的所有文件
      * http://localhost:8080/file/list
-     * @return List<OSSObjectSummary>
      * @Param
      */
     @RequestMapping("/list")
@@ -78,9 +79,9 @@ public class FileUploadController {
     }
 
     /**
+     * @return
      * @author lastwhisper
      * @desc 根据文件名下载oss上的文件
-     * @return
      * @Param objectName
      */
     @RequestMapping("/download")
@@ -89,7 +90,7 @@ public class FileUploadController {
         //通知浏览器以附件形式下载
         response.setHeader("Content-Disposition",
                 "attachment;filename=" + new String(objectName.getBytes(), "ISO-8859-1"));
-        this.fileUploadServiceImpl.exportOssFile(response.getOutputStream(),objectName);
+        this.fileUploadServiceImpl.exportOssFile(response.getOutputStream(), objectName);
     }
 }
 

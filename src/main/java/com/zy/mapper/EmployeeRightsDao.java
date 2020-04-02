@@ -16,6 +16,7 @@ public interface EmployeeRightsDao {
 
     /**
      * 获取已经分配的权限
+     *
      * @param gradeId
      * @return
      */
@@ -23,13 +24,20 @@ public interface EmployeeRightsDao {
 
 
     /**
-     * 分配权限
+     * 分配权限（修改权限）
+     *
      * @param updateRightsRequest
      * @return
      */
     public int updateRights(UpdateRightsRequest updateRightsRequest);
 
 
+    /**
+     * 分配权限（新增权限）
+     *
+     * @param updateRightsRequest
+     * @return
+     */
     public int insertRights(UpdateRightsRequest updateRightsRequest);
 
 }

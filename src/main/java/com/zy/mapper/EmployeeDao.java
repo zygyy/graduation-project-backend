@@ -38,7 +38,7 @@ public interface EmployeeDao {
      * @param empId
      * @return
      */
-    public int deleteEmployee(long empId, Date leaveDate,String terminationReason, String updateUser, Date updateTime);
+    public int deleteEmployee(long empId, Date leaveDate, String terminationReason, String updateUser, Date updateTime);
 
     /**
      * 根据员工号查找员工
@@ -80,17 +80,17 @@ public interface EmployeeDao {
     public Long selectEmpId();
 
     /**
-     *
-     * @param grade2 修改之后
-     * @param grade1 修改之前
+     * @param grade2     修改之后
+     * @param grade1     修改之前
      * @param department
      * @return
      */
-    public int updateGradeByDepartment(String grade2,String grade1,String department);
+    public int updateGradeByDepartment(String grade2, String grade1, String department);
 
 
     /**
      * 统计每个部门的人数
+     *
      * @param department
      * @return
      */
@@ -103,6 +103,6 @@ public interface EmployeeDao {
      * @param department
      * @return
      */
-    public Integer employeeGradeNumber(String grade,String department);
+    public Integer employeeGradeNumber(String grade, String department);
 
 }

@@ -19,32 +19,89 @@ import java.util.List;
 public interface DepartmentService {
 
     /**
-     * 获取部门和相应的职位
+     * 得到部门的树形图
      *
      * @return
      */
     public RespBean getDepartments();
 
+    /**
+     * 得到形如：部门-总部门-职位-描述的形式
+     *
+     * @return
+     */
     public RespBean getGrades();
 
-    public  RespBean deleteGrade(int id);
+    /**
+     * 删除职位
+     *
+     * @param id
+     * @return
+     */
+    public RespBean deleteGrade(int id);
 
-    public int  deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
+    /**
+     * 删除对改职位的评论(实际是修改评论)
+     *
+     * @param deleteDescribeRequest
+     * @return
+     */
+    public int deleteGradeDescribe(DeleteDescribeRequest deleteDescribeRequest);
 
-    public  int updateGrade(int id,String name);
+    /**
+     * 修改职位名称
+     *
+     * @param id
+     * @param name
+     * @return
+     */
+    public int updateGrade(int id, String name);
 
+    /**
+     * 更新职位名称时，先要获取其部门信息，形成链式结构
+     *
+     * @param id
+     * @return
+     */
     public Department getUpdateDepartment(int id);
 
+    /**
+     * 获取部门信息（level为0和1的），形成树结构
+     *
+     * @return
+     */
     public RespBean getDepartmentsNotLevel2();
 
-    public int addGrade(String name,int pId,String describes,String scale);
+    /**
+     * 添加新职位
+     *
+     * @param name
+     * @param pId
+     * @param describes
+     * @param scale
+     * @return
+     */
+    public int addGrade(String name, int pId, String describes, String scale);
 
-    Department getDepartmentByNameAndPId(String name,int pId);
+    /**
+     * 添加新职位时，先判断是否已经存在
+     *
+     * @param name
+     * @param pId
+     * @return
+     */
+    Department getDepartmentByNameAndPId(String name, int pId);
 
+    /**
+     * 获取总部门以及子部门，形成链结构
+     *
+     * @return
+     */
     List<Department> departmentAndNumber();
 
     /**
      * 根据level获取对应的职位
+     *
      * @param level1
      * @return
      */
@@ -52,6 +109,7 @@ public interface DepartmentService {
 
 
     //分配权限使用的方法
+
     /**
      * 分页查询职位列表
      *

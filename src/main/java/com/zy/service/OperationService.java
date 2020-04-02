@@ -12,6 +12,7 @@ import java.util.List;
  * @create 2020-04-02 12:44
  */
 public interface OperationService {
+    //管理员分配权限的方法
     /**
      * 获取所有属于员工的权限
      * @return

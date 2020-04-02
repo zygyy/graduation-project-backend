@@ -1,7 +1,6 @@
 package com.zy.mapper;
 
 import com.zy.entity.Activateemp;
-import com.zy.entity.Department;
 import com.zy.entity.Operation;
 import com.zy.vo.request.MyselfUpdateRequest;
 import org.springframework.stereotype.Repository;
@@ -20,6 +19,7 @@ public interface ActivateempDao {
 
     /**
      * 用户和管理员登录
+     *
      * @param username
      * @return
      */
@@ -64,14 +64,15 @@ public interface ActivateempDao {
      * @param password
      * @return
      */
-    public int passwordUpdate(Long empId,String name,String password);
+    public int passwordUpdate(Long empId, String name, String password);
 
     /**
      * 根据empId和姓名更新头像地址
+     *
      * @param empId
      * @param name
      * @param photoUrl
      * @return
      */
-    public int updatePhoto(long empId,String name,String photoUrl);
+    public int updatePhoto(long empId, String name, String photoUrl);
 }

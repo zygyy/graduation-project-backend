@@ -55,7 +55,7 @@ public class TotalController {
     public RespBean departPeopleTotal(@RequestBody DepartmentRequest departmentRequest) {
         String[] result = departmentRequest.getDepartmentName().split("/");
         List<String> gradelist = departmentService.getGradeTotal(result[1]);
-        TotalResopnse totalResopnse=new TotalResopnse();
+        TotalResopnse totalResopnse = new TotalResopnse();
         totalResopnse.setDepartment(gradelist);
         List<Integer> numberResult = new ArrayList();
         for (int i = 0; i < gradelist.size(); i++) {

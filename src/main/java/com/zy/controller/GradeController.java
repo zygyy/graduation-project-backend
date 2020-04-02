@@ -1,7 +1,6 @@
 package com.zy.controller;
 
 import com.zy.entity.Department;
-import com.zy.entity.Employee;
 import com.zy.service.DepartmentService;
 import com.zy.service.EmployeeService;
 import com.zy.vo.base.RespBean;
@@ -11,8 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @author 执笔画倾颜and陈群
@@ -52,13 +49,12 @@ public class GradeController {
     @PutMapping("/updateGrade")
     public RespBean updateGrade(@RequestBody Department department) {
         Department updateInformation = departmentService.getUpdateDepartment(department.getId());
-        System.out.println(updateInformation);
         String grade2 = department.getName();
         String grade1 = updateInformation.getName();
         String employeeDepartment = updateInformation.getDepartment().getDepartment().getName() + "/" + updateInformation.getDepartment().getName();
         int result = departmentService.updateGrade(department.getId(), department.getName());
         int res = employeeService.updateGradeByDepartment(grade2, grade1, employeeDepartment);
-        if (result > 0) {
+        if (result > 0 && res > 0) {
             return RespBean.okMessage("更新成功！");
         } else {
             return RespBean.error("更新失败！");
@@ -71,18 +67,19 @@ public class GradeController {
         return departmentService.getDepartmentsNotLevel2();
     }
 
+
     @ApiOperation(value = "添加职位")
     @PostMapping("/addGrade/{pId}")
     public RespBean addGrade(@RequestBody AddGraderequest addGraderequest, @PathVariable int pId) {
-        Department department=departmentService.getDepartmentByNameAndPId(addGraderequest.getName(), pId);
-        if(department==null){
-            int result = departmentService.addGrade(addGraderequest.getName(), pId,addGraderequest.getDescribes(),addGraderequest.getScale());
+        Department department = departmentService.getDepartmentByNameAndPId(addGraderequest.getName(), pId);
+        if (department == null) {
+            int result = departmentService.addGrade(addGraderequest.getName(), pId, addGraderequest.getDescribes(), addGraderequest.getScale());
             if (result > 0) {
                 return RespBean.okMessage("新增成功！");
             } else {
                 return RespBean.error("新增失败!");
             }
-        }else{
+        } else {
             return RespBean.error("该职位已存在!");
         }
 

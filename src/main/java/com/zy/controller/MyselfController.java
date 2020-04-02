@@ -33,32 +33,31 @@ public class MyselfController {
     ASEEncrypt aSEEncrypt;
 
 
-
     @ApiOperation(value = "修改基本信息")
     @PutMapping("/myselfUpdate")
-    public RespBean myselfUpdate(@RequestBody MyselfUpdateRequest myselfUpdateRequest){
-        int result=activateempService.myselfUpdate(myselfUpdateRequest);
-        if(result>0){
+    public RespBean myselfUpdate(@RequestBody MyselfUpdateRequest myselfUpdateRequest) {
+        int result = activateempService.myselfUpdate(myselfUpdateRequest);
+        if (result > 0) {
             return RespBean.okMessage("修改成功！");
-        }else{
+        } else {
             return RespBean.error("修改失败！");
         }
     }
 
     @ApiOperation(value = "修改密码")
     @PutMapping("/updatePassword/{password}")
-    public RespBean updatePassword(@PathVariable String password,HttpServletRequest request)throws Exception{
+    public RespBean updatePassword(@PathVariable String password, HttpServletRequest request) throws Exception {
         Enumeration e = request.getHeaders("authorization");
         while (e.hasMoreElements()) {
             String headValue = (String) e.nextElement();
-            Claims result= jwtUtils.parseJwt(headValue);
-            System.out.println("解析是："+result.getId());
-           int updateResult= activateempService.passwordUpdate(Long.parseLong(result.getId()),result.getSubject(),aSEEncrypt.passwordEncrypt(password));
-             if(updateResult>0){
-                 return RespBean.okMessage("修改成功！");
-             }else{
-                 return RespBean.error("修改失败");
-             }
+            Claims result = jwtUtils.parseJwt(headValue);
+            System.out.println("解析是：" + result.getId());
+            int updateResult = activateempService.passwordUpdate(Long.parseLong(result.getId()), result.getSubject(), aSEEncrypt.passwordEncrypt(password));
+            if (updateResult > 0) {
+                return RespBean.okMessage("修改成功！");
+            } else {
+                return RespBean.error("修改失败");
+            }
         }
         return null;
 

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author 执笔画倾颜and陈群
  * @college Yancheng Institute of Technology
- * @Description
+ * @Description 部门表以及其他属性
  * @class Department
  * @create 2020-02-25 14:05
  */

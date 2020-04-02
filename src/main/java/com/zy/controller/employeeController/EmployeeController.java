@@ -34,11 +34,11 @@ public class EmployeeController {
 
     @ApiOperation(value = "确保用户名唯一")
     @GetMapping("/usernameJudge/{username}")
-    public RespBean usernameJudge(@PathVariable String username){
-        Activateemp activateemp=activateempService.judgeUserName(username);
-        if(activateemp==null){
+    public RespBean usernameJudge(@PathVariable String username) {
+        Activateemp activateemp = activateempService.judgeUserName(username);
+        if (activateemp == null) {
             return RespBean.okMessage("此昵称可用！");
-        }else{
+        } else {
             return RespBean.error("此昵称重复,请从新设置！");
         }
     }
