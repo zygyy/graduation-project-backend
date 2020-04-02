@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.EmployeeRightsDao">
+    <select id="getEmployeeRight" parameterType="int" resultType="com.zy.entity.EmployeeRights">
+        select * from employeerights where gradeId=#{gradeId}
+    </select>
+
+    <update id="updateRights" parameterType="com.zy.vo.request.UpdateRightsRequest">
+         update employeerights set operationId=#{operationId} where gradeId=#{gradeId}
+    </update>
+
+    <insert id="insertRights" parameterType="com.zy.vo.request.UpdateRightsRequest">
+        insert into employeerights(gradeId,operationId) values(#{gradeId},#{operationId})
+    </insert>
+
+</mapper>

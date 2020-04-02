@@ -27,7 +27,7 @@
         update department set name=#{name} where id=#{id}
     </update>
 
-    <insert id="addGrade">
+    <insert id="addGrade" keyProperty="number" >
        insert into department(name,pId,level,describes,scale) values(#{name},#{pId},2,#{describes},#{scale})
     </insert>
 
@@ -37,6 +37,29 @@
 
     <select id="getGradeTotal" parameterType="String" resultType="String">
        select name from department where pId=(select id from department where name=#{name})
+    </select>
+
+
+    <select id="getGradesByPagination" parameterType="com.zy.vo.request.PaginationRequest" resultType="com.zy.entity.Department">
+          select * from department
+        <where>
+            <if test="query!=null">
+                and name like concat('%',#{query},'%')
+            </if>
+        </where>
+        and level=2
+        limit #{pagenum},#{pagesize}
+    </select>
+
+    <!--    计算总条数    -->
+    <select id="totalGradeByPagination" resultType="int" parameterType="String">
+        select COUNT(*) from department
+        <where>
+            <if test="query!=null">
+                and name like concat('%',#{query},'%')
+            </if>
+        </where>
+        and level=2
     </select>
 
 </mapper>

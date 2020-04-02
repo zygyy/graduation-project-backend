@@ -4,6 +4,7 @@ package com.zy.service;
 import com.zy.entity.Department;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.DeleteDescribeRequest;
+import com.zy.vo.request.PaginationRequest;
 
 import java.util.List;
 
@@ -48,4 +49,15 @@ public interface DepartmentService {
      * @return
      */
     List<String> getGradeTotal(String level1);
+
+
+    //分配权限使用的方法
+    /**
+     * 分页查询职位列表
+     *
+     * @param paginationRequest
+     * @return
+     */
+    public RespBean getGradesByPagination(PaginationRequest paginationRequest);
+
 }

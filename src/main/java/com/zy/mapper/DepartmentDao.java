@@ -3,6 +3,7 @@ package com.zy.mapper;
 import com.zy.entity.Department;
 import com.zy.entity.Employee;
 import com.zy.vo.request.DeleteDescribeRequest;
+import com.zy.vo.request.PaginationRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -80,4 +81,22 @@ public interface DepartmentDao {
      * @return
      */
     List<String> getGradeTotal(String level1);
+
+
+    //分配权限使用的方法
+
+    /**
+     * 分页查询
+     *
+     * @param paginationRequest
+     * @return
+     */
+    public List<Department> getGradesByPagination(PaginationRequest paginationRequest);
+
+    /**
+     *
+     * @param query
+     * @return
+     */
+    public int totalGradeByPagination(String query);
 }

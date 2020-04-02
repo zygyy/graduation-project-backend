@@ -11,39 +11,6 @@
             <if test="query!=null">
                 and chineseName like concat('%',#{query},'%')
             </if>
-            <!--<if test="gender!=null">
-                and gender like concat('%',#{query},'%')
-            </if>
-            <if test="grade!=null">
-                and grade like concat('%',#{query},'%')
-            </if>
-            <if test="department!=null">
-                and department like concat('%',#{query},'%')
-            </if>
-            <if test="workingLocation!=null">
-                and workingLocation like concat('%',#{query},'%')
-            </if>
-            <if test="phone!=null">
-                and phone like concat('%',#{query},'%')
-            </if>
-            <if test="address!=null">
-                and address like concat('%',#{query},'%')
-            </if>
-            <if test="email!=null">
-                and email like concat('%',#{query},'%')
-            </if>
-            <if test="school!=null">
-                and school like concat('%',#{query},'%')
-            </if>
-            <if test="marjor!=null">
-                and marjor like concat('%',#{query},'%')
-            </if>
-            <if test="degree!=null">
-                and degree like concat('%',#{query},'%')
-            </if>
-            <if test="terminationReason!=null">
-                and terminationReason like concat('%',#{query},'%')
-            </if>-->
         </where>
         order by isDeleted desc
         limit #{pagenum},#{pagesize}
