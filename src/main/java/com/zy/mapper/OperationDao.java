@@ -2,6 +2,7 @@ package com.zy.mapper;
 
 
 import com.zy.vo.Bean.Operation;
+import com.zy.vo.request.AddRightsRequest;
 
 import java.util.List;
 
@@ -21,5 +22,13 @@ public interface OperationDao {
      * @return
      */
     public List<Operation> getUserOperation();
+
+    /**
+     * 增加新权限
+     *
+     * @param addRightsRequest
+     * @return
+     */
+    public int addRights(AddRightsRequest addRightsRequest);
 
 }

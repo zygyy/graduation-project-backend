@@ -6,6 +6,7 @@ import com.zy.service.EmployeeRightsService;
 import com.zy.service.OperationService;
 import com.zy.vo.Bean.Operation;
 import com.zy.vo.base.RespBean;
+import com.zy.vo.request.AddRightsRequest;
 import com.zy.vo.request.PaginationRequest;
 import com.zy.vo.request.UpdateRightsRequest;
 import io.swagger.annotations.Api;
@@ -82,8 +83,18 @@ public class RightsController {
                 return RespBean.error("分配权限失败！");
             }
         }
-
     }
 
+    @ApiOperation(value = "新增权限")
+    @PostMapping("/addRights")
+    public RespBean addRights(@RequestBody AddRightsRequest addRightsRequest){
+        int result=operationService.addRights(addRightsRequest);
+        if(result>0){
+            return RespBean.okMessage("新增成功！");
+        }else{
+            return RespBean.error("新增失败！");
+        }
+
+    }
 
 }

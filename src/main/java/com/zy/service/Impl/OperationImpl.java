@@ -3,6 +3,7 @@ package com.zy.service.Impl;
 import com.zy.mapper.OperationDao;
 import com.zy.service.OperationService;
 import com.zy.vo.Bean.Operation;
+import com.zy.vo.request.AddRightsRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,5 +24,11 @@ public class OperationImpl implements OperationService {
     @Override
     public List<Operation> getUserOperation() {
         return operationDao.getUserOperation();
+    }
+
+
+    @Override
+    public int addRights(AddRightsRequest addRightsRequest) {
+        return operationDao.addRights(addRightsRequest);
     }
 }

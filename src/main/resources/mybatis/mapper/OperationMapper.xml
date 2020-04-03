@@ -7,4 +7,7 @@
         select * from operation where level=1 and apply="employee"
     </select>
 
+    <insert id="addRights" parameterType="com.zy.entity.Operation">
+        insert into operation(authName,level,apply,path) values(#{authName},1,"employee",#{path})
+    </insert>
 </mapper>
