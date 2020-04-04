@@ -100,8 +100,19 @@ public interface DepartmentDao {
     public List<Department> getGradesByPagination(PaginationRequest paginationRequest);
 
     /**
+     * 获取总条数
+     *
      * @param query
      * @return
      */
     public int totalGradeByPagination(String query);
+
+    /**
+     * 根据部门name找到部门id
+     *
+     * @param name
+     * @return
+     */
+    public int getDepartmentId(String name);
+
 }

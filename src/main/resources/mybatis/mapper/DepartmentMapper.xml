@@ -62,4 +62,8 @@
         and level=2
     </select>
 
+    <select id="getDepartmentId" parameterType="String" resultType="int">
+        select id from department where name=#{name}
+    </select>
+
 </mapper>

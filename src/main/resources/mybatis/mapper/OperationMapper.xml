@@ -10,4 +10,8 @@
     <insert id="addRights" parameterType="com.zy.entity.Operation">
         insert into operation(authName,level,apply,path) values(#{authName},1,"employee",#{path})
     </insert>
+
+    <select id="getOperationById" resultType="com.zy.vo.Bean.Operation" parameterType="int">
+        select * from operation where operationId=#{operationId} and apply="employee"
+    </select>
 </mapper>

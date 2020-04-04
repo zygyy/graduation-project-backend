@@ -73,4 +73,14 @@ public class EmployeeController {
             }
         }
     }
+
+    @ApiOperation(value = "获取左侧权限")
+    @GetMapping("/getOperationsByEmployee/{empId}")
+    public RespBean getOperationsByEmployee(@PathVariable Long empId){
+        return employeeService.getOperationByEmployee(empId);
+    }
+
+
+
+
 }

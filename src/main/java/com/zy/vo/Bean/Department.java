@@ -1,0 +1,23 @@
+package com.zy.vo.Bean;
+
+import lombok.Data;
+
+import java.util.List;
+
+/**
+ * @author 执笔画倾颜and陈群
+ * @college Yancheng Institute of Technology
+ * @Description 部门表以及其他属性
+ * @class Department
+ * @create 2020-02-25 14:05
+ */
+@Data
+public class Department {
+    private int id;
+    private String name;
+    private int pId;//父节点
+    private int level;//级别
+    private String describes;//level为2的grade的描述
+    private String scale;//职位的级别
+
+}

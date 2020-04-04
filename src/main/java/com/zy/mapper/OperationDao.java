@@ -31,4 +31,12 @@ public interface OperationDao {
      */
     public int addRights(AddRightsRequest addRightsRequest);
 
+    /**
+     * 根据Id获取权限
+     *
+     * @param operationId
+     * @return
+     */
+    public Operation getOperationById(int operationId);
+
 }

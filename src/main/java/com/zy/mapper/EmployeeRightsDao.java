@@ -40,4 +40,13 @@ public interface EmployeeRightsDao {
      */
     public int insertRights(UpdateRightsRequest updateRightsRequest);
 
+
+    //员工端
+    /**
+     * 获取员工的操作权限
+     *
+     * @param gradeId
+     * @return
+     */
+    public String getOperationId(int gradeId);
 }

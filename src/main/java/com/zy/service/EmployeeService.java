@@ -83,7 +83,7 @@ public interface EmployeeService {
      * @param department
      * @return
      */
-    public int updateGradeByDepartment(String grade2,String grade1,String department);
+    public int updateGradeByDepartment(String grade2, String grade1, String department);
 
     /**
      * 查询某个部门下的总人数
@@ -100,6 +100,16 @@ public interface EmployeeService {
      * @param department
      * @return
      */
-    public Integer employeeGradeNumber(String grade,String department);
+    public Integer employeeGradeNumber(String grade, String department);
 
+
+    //员工端
+
+    /**
+     * 员工获取左侧操作权限
+     *
+     * @param empId
+     * @return
+     */
+    public RespBean getOperationByEmployee(Long empId);
 }

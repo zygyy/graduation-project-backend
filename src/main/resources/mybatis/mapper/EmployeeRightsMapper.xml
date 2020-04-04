@@ -15,4 +15,7 @@
         insert into employeerights(gradeId,operationId) values(#{gradeId},#{operationId})
     </insert>
 
+    <select id="getOperationId" parameterType="int" resultType="String">
+        select operationId from employeerights where gradeId=#{gradeId}
+    </select>
 </mapper>
