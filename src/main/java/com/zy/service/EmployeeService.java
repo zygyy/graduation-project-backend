@@ -112,4 +112,12 @@ public interface EmployeeService {
      * @return
      */
     public RespBean getOperationByEmployee(Long empId);
+
+    /**
+     * 获取本团队其他成员的信息
+     *
+     * @param empId
+     * @return
+     */
+    public RespBean getOthersInformation(Long empId);
 }

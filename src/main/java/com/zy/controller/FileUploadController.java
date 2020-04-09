@@ -33,8 +33,8 @@ public class FileUploadController {
 
     /**
      * @return FileUploadResult
-     * @author lastwhisper
-     * @desc 文件上传到oss
+     * @author 管理员端
+     * @desc 文件上传到oss, 并插入数据库
      * @Param uploadFile
      */
     @PostMapping("/upload/{empId}/{name}")
@@ -49,6 +49,26 @@ public class FileUploadController {
             return RespBean.error("上传失败！");
         }
     }
+
+    /**
+     * @return FileUploadResult
+     * @author lastwhisper
+     * @desc 文件上传到oss
+     * @Param uploadFile
+     */
+    @PostMapping("/upload")
+    @ResponseBody
+    public RespBean upload(@RequestParam("file") MultipartFile uploadFile)
+            throws Exception {
+        FileUploadResponse fileUploadResponse = this.fileUploadServiceImpl.upload(uploadFile);
+        if (fileUploadResponse.getResponse() == "success") {
+            return RespBean.ok("上传成功！", fileUploadResponse);
+        } else {
+            return RespBean.error("上传失败！");
+        }
+
+    }
+
 
     /**
      * @return FileUploadResult

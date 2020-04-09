@@ -122,4 +122,9 @@ public class ActivateempImpl implements ActivateempService {
     public int updatePhoto(long empId,String name,String photoUrl){
         return activateempDao.updatePhoto(empId,name,photoUrl);
     }
+
+    @Override
+    public int deleteEmployee(long empId){
+        return activateempDao.deleteEmployee(empId);
+    }
 }

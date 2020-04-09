@@ -105,4 +105,11 @@ public interface EmployeeDao {
      */
     public Integer employeeGradeNumber(String grade, String department);
 
+    /**
+     * 查找和自己同一个部门的人
+     *
+     * @param department
+     * @return
+     */
+    public List<Employee> getOthers(String department,Long empId);
 }

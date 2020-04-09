@@ -65,5 +65,7 @@ public class Employee {
     private Date updateTime;
     //是否有效(1代表有效,0代表无效)
     private int isDeleted;
+    //头像地址
+    private String url;
 
 }

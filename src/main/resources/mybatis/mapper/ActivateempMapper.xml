@@ -43,4 +43,8 @@
         update activateemp set photoUrl=#{photoUrl} where empId=#{empId} and name=#{name}
     </update>
 
+    <delete id="deleteEmployee" parameterType="long">
+        delete from activateemp where empId=#{empId}
+    </delete>
+
 </mapper>

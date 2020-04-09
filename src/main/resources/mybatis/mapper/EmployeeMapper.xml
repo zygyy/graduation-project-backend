@@ -36,7 +36,7 @@
 
     <update id="updateEmployeeNotDelete" parameterType="com.zy.entity.Employee">
         update employee set chineseName=#{chineseName},gender=#{gender},grade=#{grade},hireDate=#{hireDate},department=#{department},workingLocation=#{workingLocation},
-        phone=#{phone},address=#{address},email=#{email},school=#{school},marjor=#{marjor},degree=#{degree},graduationTime=#{graduationTime},birthday=#{birthday},leaveDate=null,terminationReason=null,updateUser=#{updateUser},updateTime=#{updateTime}
+        phone=#{phone},address=#{address},email=#{email},school=#{school},marjor=#{marjor},degree=#{degree},graduationTime=#{graduationTime},birthday=#{birthday},leaveDate=null,terminationReason=null,updateUser=#{updateUser},updateTime=#{updateTime},url=#{url}
         where empId=#{empId}
     </update>
 
@@ -65,6 +65,10 @@
 
     <select id="employeeGradeNumber" resultType="Integer">
          select count(*) from employee where grade=#{grade} and department=#{department} and  isDeleted=1
+    </select>
+
+    <select id="getOthers"  resultType="com.zy.entity.Employee">
+        select * from employee where isDeleted=1 and department=#{department} and empId!=#{empId}
     </select>
 
 </mapper>

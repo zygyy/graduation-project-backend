@@ -113,4 +113,11 @@ public class EmployeeImpl implements EmployeeService {
         return RespBean.ok("获取操作权限成功！", operationResult);
     }
 
+    @Override
+    public RespBean getOthersInformation(Long empId) {
+        Employee employee=employeeDao.getEmployeeByEmpId(empId);
+        List<Employee> employeeList=employeeDao.getOthers(employee.getDepartment(),empId);
+        return RespBean.ok("获取信息成功！",employeeList);
+    }
+
 }

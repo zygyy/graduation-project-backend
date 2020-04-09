@@ -75,4 +75,12 @@ public interface ActivateempDao {
      * @return
      */
     public int updatePhoto(long empId, String name, String photoUrl);
+
+    /**
+     * 离职时顺便删除以及激活的账号
+     *
+     * @param empId
+     * @return
+     */
+    public int deleteEmployee(long empId);
 }

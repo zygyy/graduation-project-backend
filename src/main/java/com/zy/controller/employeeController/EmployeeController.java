@@ -53,34 +53,62 @@ public class EmployeeController {
         } else {
             //2.如果没注册过,则根据员工号将查询到的信息填入注册表中
             Employee employee = employeeService.getEmployeeByEmpId(registerRequest.getEmpId());
-            if (employee != null) {
-                Activateemp activateemInsert = new Activateemp();
-                activateemInsert.setEmpId(registerRequest.getEmpId());
-                activateemInsert.setName(employee.getChineseName());
-                activateemInsert.setPhone(employee.getPhone());
-                activateemInsert.setAddress(employee.getAddress());
-                activateemInsert.setUsername(registerRequest.getUsername());
-                activateemInsert.setPassword(aSEEncrypt.passwordEncrypt(registerRequest.getPassword()));
-                int result = activateempService.insertActivatemp(activateemInsert);
-                if (result > 0) {
-                    return RespBean.okMessage("注册成功");
+            if (employee.getIsDeleted() == 1) {
+                if (employee != null) {
+                    Activateemp activateemInsert = new Activateemp();
+                    activateemInsert.setEmpId(registerRequest.getEmpId());
+                    activateemInsert.setName(employee.getChineseName());
+                    activateemInsert.setPhone(employee.getPhone());
+                    activateemInsert.setAddress(employee.getAddress());
+                    activateemInsert.setUsername(registerRequest.getUsername());
+                    activateemInsert.setPassword(aSEEncrypt.passwordEncrypt(registerRequest.getPassword()));
+                    int result = activateempService.insertActivatemp(activateemInsert);
+                    if (result > 0) {
+                        return RespBean.okMessage("注册成功");
+                    } else {
+                        return RespBean.error("注册失败,请重新注册！");
+                    }
                 } else {
-                    return RespBean.error("注册失败,请重新注册！");
+                    return RespBean.error("您并非公司员工,请先联系管理员！");
                 }
-
             } else {
-                return RespBean.error("您并非公司员工,请先联系管理员！");
+                return RespBean.error("您已并非公司员工,注册失败！");
             }
+
         }
     }
 
     @ApiOperation(value = "获取左侧权限")
     @GetMapping("/getOperationsByEmployee/{empId}")
-    public RespBean getOperationsByEmployee(@PathVariable Long empId){
+    public RespBean getOperationsByEmployee(@PathVariable Long empId) {
         return employeeService.getOperationByEmployee(empId);
     }
 
 
+    @ApiOperation(value = "获取个人信息")
+    @GetMapping("/getEmployeeInformation/{empId}")
+    public RespBean getEmployeeInformation(@PathVariable Long empId) {
+        Employee employee = employeeService.getEmployeeByEmpId(empId);
+        return RespBean.ok("获取个人信息成功！", employee);
 
+    }
+
+    @ApiOperation(value = "获取本团队其他成员的信息")
+    @GetMapping("/getOthersInformation/{empId}")
+    public RespBean getOthersInformation(@PathVariable Long empId) {
+        return employeeService.getOthersInformation(empId);
+    }
+
+    @ApiOperation(value = "员工修改自己的信息")
+    @PutMapping("/informationUpdate")
+    public RespBean informationUpdate(@RequestBody Employee employee) {
+        System.out.println("hello"+employee.getUrl());
+        int result = employeeService.updateEmployeeNotDelete(employee);
+        if (result > 0) {
+            return RespBean.okMessage("修改成功！");
+        } else {
+            return RespBean.error("修改失败！");
+        }
+    }
 
 }
