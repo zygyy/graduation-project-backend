@@ -1,16 +1,22 @@
 package com.zy.controller.employeeController;
 
 import com.zy.entity.Activateemp;
+import com.zy.entity.Bbs;
 import com.zy.entity.Employee;
 import com.zy.service.ActivateempService;
+import com.zy.service.BbsService;
 import com.zy.service.EmployeeService;
 import com.zy.util.ASEEncrypt;
 import com.zy.vo.base.RespBean;
+import com.zy.vo.request.employeeRequest.BBSRequest;
 import com.zy.vo.request.employeeRequest.RegisterRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
+import java.util.List;
 
 /**
  * @author 执笔画倾颜and陈群
@@ -31,6 +37,9 @@ public class EmployeeController {
 
     @Autowired
     ASEEncrypt aSEEncrypt;
+
+    @Autowired
+    BbsService bbsService;
 
     @ApiOperation(value = "确保用户名唯一")
     @GetMapping("/usernameJudge/{username}")
@@ -102,7 +111,7 @@ public class EmployeeController {
     @ApiOperation(value = "员工修改自己的信息")
     @PutMapping("/informationUpdate")
     public RespBean informationUpdate(@RequestBody Employee employee) {
-        System.out.println("hello"+employee.getUrl());
+        System.out.println("hello" + employee.getUrl());
         int result = employeeService.updateEmployeeNotDelete(employee);
         if (result > 0) {
             return RespBean.okMessage("修改成功！");
@@ -111,4 +120,59 @@ public class EmployeeController {
         }
     }
 
+    @ApiOperation(value = "获取BBS的信息")
+    @GetMapping("/getBBS/{empId}")
+    public RespBean getBBS(@PathVariable int empId) {
+        List<Bbs> bbsList = bbsService.getBbs(empId);
+        return RespBean.ok("数据获取成功！", bbsList);
+    }
+
+    @ApiOperation(value = "删除BBS的信息")
+    @PutMapping("/bbsDeteted/{id}")
+    public RespBean bbsDeteted(@PathVariable int id) {
+        int result = bbsService.deteted(id);
+        if (result > 0) {
+            return RespBean.okMessage("删除成功！");
+        } else {
+            return RespBean.error("删除失败！");
+        }
+    }
+
+    @ApiOperation(value = "添加文章")
+    @PostMapping("/addBBS")
+    public RespBean addBBs(@RequestBody Bbs bbs) {
+        bbs.setPublishTime(new Date(System.currentTimeMillis()));
+        int result = bbsService.add(bbs);
+        if (result > 0) {
+            return RespBean.okMessage("发布成功！");
+        } else {
+            return RespBean.error("发布失败");
+        }
+    }
+
+    @ApiOperation(value = "根据id获取文章")
+    @GetMapping("/getBBSById/{id}")
+    public RespBean getBBSById(@PathVariable int id) {
+        Bbs bbs = bbsService.getBBSById(id);
+        if (bbs == null) {
+            return RespBean.error("获取数据失败！");
+        } else {
+            return RespBean.ok("获取数据成功！", bbs);
+        }
+    }
+
+
+    @ApiOperation(value = "根据id修改文章")
+    @PutMapping("/updateBBS")
+    public RespBean updateBBS(@RequestBody Bbs bbs){
+        bbs.setPublishTime(new Date(System.currentTimeMillis()));
+        int result=bbsService.updateBBS(bbs);
+        if(result>0){
+            return RespBean.okMessage("修改成功！");
+        }else{
+            return RespBean.error("修改失败！");
+        }
+
+
+    }
 }

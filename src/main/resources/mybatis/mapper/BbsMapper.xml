@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.mapper.BbsDao">
+    <select id="getBbs" resultType="com.zy.entity.Bbs" parameterType="int">
+        select * from bbs where isDeleted=1 and empId=#{empId} order by id desc
+    </select>
+
+    <update id="deteted" parameterType="int">
+        update bbs set isDeleted=0 where id=#{id}
+    </update>
+
+    <insert id="add" parameterType="com.zy.entity.Bbs">
+        insert into bbs(empId,title,content,publishTime,isDeleted,chineseName)
+        values(#{empId},#{title},#{content},#{publishTime},1,#{chineseName})
+    </insert>
+
+    <select id="getBBSById" resultType="com.zy.entity.Bbs">
+        select * from bbs where id=#{id} and isDeleted=1
+    </select>
+
+    <update id="updateBBS" parameterType="com.zy.entity.Bbs">
+        update bbs set title=#{title},content=#{content},publishTime=#{publishTime}
+        where id=#{id} and isDeleted=1
+    </update>
+    
+    <select id="getAllBBSByQuery" resultType="com.zy.entity.Bbs">
+        select * from bbs
+        <where>
+            <if test="query!=null">
+                and title like concat('%',#{query},'%')
+                or content like concat('%',#{query},'%')
+                or empId like concat('%',#{query},'%')
+                or chineseName like concat('%',#{query},'%')
+            </if>
+        </where>
+        order by empId  asc
+    </select>
+
+    <delete id="deletedbbsByAdmin" parameterType="int">
+        delete from bbs where id=#{id}
+    </delete>
+
+</mapper>
