@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +47,9 @@ public class LoginByAdmin {
 
     @Autowired
     JwtUtils jwtUtils;
+
+    @Autowired
+    JavaMailSenderImpl javaMailSender;
 
 
     @ApiOperation(value = "登录")
@@ -156,6 +161,13 @@ public class LoginByAdmin {
             addEmployeerequest.setCreateTime(new Date(System.currentTimeMillis()));
             int result = employeeService.addEmployee(addEmployeerequest);
             if (result > 0) {
+                SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+                //邮件设置
+                simpleMailMessage.setSubject("欢迎"+addEmployeerequest.getChineseName()+"加入XX公司！");
+                simpleMailMessage.setText("您的基本信息以录入系统，请及时登录系统查看并修改！这是您的工号牌："+(maxEmpId + 1)+"(请牢记！)");
+                simpleMailMessage.setTo(addEmployeerequest.getEmail()+"");
+                simpleMailMessage.setFrom("1297799065@qq.com");
+                javaMailSender.send(simpleMailMessage);
                 return RespBean.okMessage("创建新员工成功！");
             } else {
                 return RespBean.error("创建失败！");

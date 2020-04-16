@@ -12,7 +12,7 @@
                 and chineseName like concat('%',#{query},'%')
             </if>
         </where>
-        order by isDeleted desc
+
         limit #{pagenum},#{pagesize}
     </select>
 
