@@ -41,6 +41,8 @@ public interface DepartmentDao {
      */
     Employee getEmployeeByGradeId(int id);
 
+    List<Employee> getEmployeeByGradeIdSecond(int id);
+
 
     /**
      * 删除职位描述

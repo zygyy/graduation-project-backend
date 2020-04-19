@@ -99,8 +99,8 @@ public class DepartmentImpl implements DepartmentService {
 
     @Override
     public RespBean deleteGrade(int id) {
-        Employee employee = departmentDao.getEmployeeByGradeId(id);
-        if (employee != null) {
+        List<Employee> employee = departmentDao.getEmployeeByGradeIdSecond(id);
+        if (employee.size() != 0) {
             return RespBean.error("删除失败！");
         } else {
             int result = departmentDao.deleteGrade(id);

@@ -23,6 +23,14 @@ public interface ActivateempService {
     public RespBean login(LoginRequest loginRequest) throws Exception;
 
     /**
+     * 登录
+     *
+     * @param loginRequest
+     * @return
+     */
+    public RespBean loginByEmployee(LoginRequest loginRequest) throws Exception;
+
+    /**
      * 登录之后获取对应的操作
      *
      * @return

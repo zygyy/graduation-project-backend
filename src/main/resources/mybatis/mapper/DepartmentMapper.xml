@@ -18,6 +18,10 @@
         select * from employee where grade=(select name from department where id=#{id}) and isDeleted=1
     </select>
 
+    <select id="getEmployeeByGradeIdSecond" parameterType="int" resultType="com.zy.entity.Employee">
+        select * from employee where grade=(select name from department where id=#{id}) and isDeleted=1
+    </select>
+
     <update id="deleteGradeDescribe" parameterType="com.zy.vo.request.DeleteDescribeRequest">
         update department set describes=#{describes}  where id=#{id}
     </update>

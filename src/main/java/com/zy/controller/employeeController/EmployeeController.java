@@ -8,6 +8,7 @@ import com.zy.service.BbsService;
 import com.zy.service.EmployeeService;
 import com.zy.util.ASEEncrypt;
 import com.zy.vo.base.RespBean;
+import com.zy.vo.request.LoginRequest;
 import com.zy.vo.request.employeeRequest.BBSRequest;
 import com.zy.vo.request.employeeRequest.RegisterRequest;
 import io.swagger.annotations.Api;
@@ -40,6 +41,12 @@ public class EmployeeController {
 
     @Autowired
     BbsService bbsService;
+
+    @ApiOperation(value = "登录")
+    @PostMapping("/login")
+    public RespBean login(@RequestBody LoginRequest loginRequest) throws Exception {
+        return activateempService.loginByEmployee(loginRequest);
+    }
 
     @ApiOperation(value = "确保用户名唯一")
     @GetMapping("/usernameJudge/{username}")

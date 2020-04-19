@@ -88,6 +88,7 @@ public class RightsController {
     @ApiOperation(value = "新增权限")
     @PostMapping("/addRights")
     public RespBean addRights(@RequestBody AddRightsRequest addRightsRequest){
+        addRightsRequest.setAuthName(addRightsRequest.getAuthName()+"(暂未开发,请等待！)");
         int result=operationService.addRights(addRightsRequest);
         if(result>0){
             return RespBean.okMessage("新增成功！");

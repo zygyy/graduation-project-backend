@@ -53,9 +53,32 @@ public class ActivateempImpl implements ActivateempService {
                 String token = jwtUtils.createJwt(activateemp.getEmpId(), activateemp.getName());
                 activateemp.setToken(token);
                 if (activateemp.getRoleId() != 1) {
-                    return RespBean.ok("员工登录成功！", activateemp);
+                    return RespBean.error("登录失败！");
                 } else {
                     return RespBean.ok("管理员登录成功！", activateemp);
+                }
+            } else {
+                return RespBean.error("密码错误！请重新确认！");
+            }
+        }
+    }
+
+    @Override
+    public RespBean loginByEmployee(LoginRequest loginRequest) throws Exception {
+        Activateemp activateemp = activateempDao.loadUserByUsername(loginRequest.getUsername());
+        if (activateemp == null) {
+            return RespBean.error("您并非公司员工，请重新登录！");
+        } else {
+            //验证密码的正确
+            String newpassword = aSEEncrypt.passwordEncrypt(loginRequest.getPassword());
+            if (activateemp.getPassword().equals(newpassword)) {
+                //添加token
+                String token = jwtUtils.createJwt(activateemp.getEmpId(), activateemp.getName());
+                activateemp.setToken(token);
+                if (activateemp.getRoleId() != 2) {
+                    return RespBean.error("登录失败！");
+                } else {
+                    return RespBean.ok("员工登录成功！", activateemp);
                 }
             } else {
                 return RespBean.error("密码错误！请重新确认！");
