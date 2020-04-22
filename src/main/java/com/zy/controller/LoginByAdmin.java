@@ -81,7 +81,7 @@ public class LoginByAdmin {
             String headValue = (String) e.nextElement();
             int result = employeeService.deleteEmployee(id, new Date(System.currentTimeMillis()), "原因不详！", jwtUtils.parseJwtTest(headValue), new Date(System.currentTimeMillis()));
             int resultActive = activateempService.deleteEmployee(id);
-            if (result > 0 && resultActive > 0) {
+            if (result > 0) {
                 return RespBean.okMessage("删除员工成功!");
             } else {
                 return RespBean.error("删除员工失败!");
@@ -134,7 +134,7 @@ public class LoginByAdmin {
             } else {
                 int result = employeeService.updateEmployeeAndDelete(employee);
                 int resultActive = activateempService.deleteEmployee(employee.getEmpId());
-                if (result > 0&&resultActive>0) {
+                if (result > 0) {
                     return RespBean.okMessage("删除成功！");
                 } else {
                     return RespBean.error("删除失败！");
