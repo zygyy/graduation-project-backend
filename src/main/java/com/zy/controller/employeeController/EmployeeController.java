@@ -7,16 +7,20 @@ import com.zy.service.ActivateempService;
 import com.zy.service.BbsService;
 import com.zy.service.EmployeeService;
 import com.zy.util.ASEEncrypt;
+import com.zy.util.JwtUtils;
 import com.zy.vo.base.RespBean;
 import com.zy.vo.request.LoginRequest;
 import com.zy.vo.request.employeeRequest.BBSRequest;
 import com.zy.vo.request.employeeRequest.RegisterRequest;
+import io.jsonwebtoken.Claims;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.util.Enumeration;
 import java.util.List;
 
 /**
@@ -41,6 +45,11 @@ public class EmployeeController {
 
     @Autowired
     BbsService bbsService;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+
 
     @ApiOperation(value = "登录")
     @PostMapping("/login")
@@ -179,7 +188,26 @@ public class EmployeeController {
         }else{
             return RespBean.error("修改失败！");
         }
+    }
 
+
+    @ApiOperation(value = "修改密码")
+    @PutMapping("/updatePassword/{password}")
+    public RespBean updatePassword(@PathVariable String password, HttpServletRequest request) throws Exception {
+        Enumeration e = request.getHeaders("authorization");
+        while (e.hasMoreElements()) {
+            String headValue = (String) e.nextElement();
+            Claims result = jwtUtils.parseJwt(headValue);
+            System.out.println("解析是：" + result.getId());
+            int updateResult = activateempService.passwordUpdate(Long.parseLong(result.getId()), result.getSubject(), aSEEncrypt.passwordEncrypt(password));
+            if (updateResult > 0) {
+                return RespBean.okMessage("修改成功！");
+            } else {
+                return RespBean.error("修改失败");
+            }
+        }
+        return null;
 
     }
+
 }
