@@ -127,7 +127,6 @@ public class EmployeeController {
     @ApiOperation(value = "员工修改自己的信息")
     @PutMapping("/informationUpdate")
     public RespBean informationUpdate(@RequestBody Employee employee) {
-        System.out.println("hello" + employee.getUrl());
         int result = employeeService.updateEmployeeNotDelete(employee);
         if (result > 0) {
             return RespBean.okMessage("修改成功！");
@@ -135,6 +134,22 @@ public class EmployeeController {
             return RespBean.error("修改失败！");
         }
     }
+
+
+
+    @ApiOperation(value = "员工修改自己的信息包括激活表")
+    @PutMapping("/employeeAndActiveUpdate")
+    public RespBean employeeAndActiveUpdate (@RequestBody Employee employee) {
+        int result = employeeService.updateEmployeeNotDelete(employee);
+        int resultActice=activateempService.employeeUpdate(employee.getEmpId(),employee.getChineseName(),employee.getPhone(),employee.getAddress());
+        if (result > 0) {
+            return RespBean.okMessage("修改成功！");
+        } else {
+            return RespBean.error("修改失败！");
+        }
+    }
+
+
 
     @ApiOperation(value = "获取BBS的信息")
     @GetMapping("/getBBS/{empId}")

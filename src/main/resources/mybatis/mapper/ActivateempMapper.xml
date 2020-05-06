@@ -47,4 +47,7 @@
         delete from activateemp where empId=#{empId}
     </delete>
 
+    <update id="employeeUpdate">
+        update activateemp set phone=#{phone},address=#{address} where  empId=#{empId} and name=#{chineseName}
+    </update>
 </mapper>

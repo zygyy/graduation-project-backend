@@ -57,6 +57,18 @@ public interface ActivateempDao {
     public int myselfUpdate(MyselfUpdateRequest myselfUpdateRequest);
 
     /**
+     * 同步更新激活表信息
+     *
+     * @param empId
+     * @param chineseName
+     * @param phone
+     * @param address
+     * @return
+     */
+    public int employeeUpdate(Long empId,String chineseName,String phone,String address);
+
+
+    /**
      * 管理员修改密码
      *
      * @param empId

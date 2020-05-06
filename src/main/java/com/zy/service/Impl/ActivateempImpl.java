@@ -150,4 +150,9 @@ public class ActivateempImpl implements ActivateempService {
     public int deleteEmployee(long empId){
         return activateempDao.deleteEmployee(empId);
     }
+
+    @Override
+    public int employeeUpdate(Long empId, String chineseName, String phone, String address) {
+        return activateempDao.employeeUpdate(empId,chineseName,phone,address);
+    }
 }

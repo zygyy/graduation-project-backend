@@ -97,4 +97,16 @@ public interface ActivateempService {
      * @return
      */
     public int deleteEmployee(long empId);
+
+    /**
+     * 同步更新激活表信息
+     *
+     * @param empId
+     * @param chineseName
+     * @param phone
+     * @param address
+     * @return
+     */
+    public int employeeUpdate(Long empId,String chineseName,String phone,String address);
+
 }
